@@ -35,9 +35,11 @@ public class ApiServiceImpl implements ApiService {
 
     @Override
     public Object save(ApiDto item) {
+        List<ApiDto> apiDtoList = new ArrayList<>();
         Api api = modelMapper.map(item, Api.class);
         apiRepository.save(api);
-        return api;
+        apiDtoList.add(modelMapper.map(api, ApiDto.class));
+        return apiDtoList;
     }
 
     @Override

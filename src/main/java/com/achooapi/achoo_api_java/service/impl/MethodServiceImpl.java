@@ -26,6 +26,15 @@ public class MethodServiceImpl implements MethodService {
     }
 
     @Override
+    public Object save(MethodDto item) {
+        List<MethodDto> methodList = new ArrayList<>();
+        Method itemSave = modelMapper.map(item, Method.class);
+        methodRepository.save(itemSave);
+        methodList.add(modelMapper.map(itemSave, MethodDto.class));
+        return methodList;
+    }
+
+    @Override
     public Object findAll() {
         List<MethodDto> methodDtoList = new ArrayList<>();
         List<Method> methodList = methodRepository.findAll();
@@ -37,10 +46,12 @@ public class MethodServiceImpl implements MethodService {
 
     @Override
     public Object findById(String id) {
+        List<MethodDto> methodDtoList = new ArrayList<>();
         Optional<Method> method = methodRepository.findById(id);
         if(method.isPresent()){
-            return modelMapper.map(method.get(), MethodDto.class);
+            methodDtoList.add(modelMapper.map(method.get(), MethodDto.class));
+            return methodDtoList;
         }
-        return new MethodDto();
+        return methodDtoList;
     }
 }

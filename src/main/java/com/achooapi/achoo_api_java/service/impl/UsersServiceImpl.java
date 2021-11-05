@@ -25,9 +25,11 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public Object save(UsersDto item) {
+        List<UsersDto> usersDtoList = new ArrayList<>();
         Users itemSave = modelMapper.map(item, Users.class);
         usersRepository.save(itemSave);
-        return itemSave;
+        usersDtoList.add(modelMapper.map(itemSave, UsersDto.class));
+        return usersDtoList;
     }
 
     @Override

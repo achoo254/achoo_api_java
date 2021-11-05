@@ -1,5 +1,6 @@
 package com.achooapi.achoo_api_java.controller;
 
+import com.achooapi.achoo_api_java.model.dto.CollectionDto;
 import com.achooapi.achoo_api_java.model.dto.MethodDto;
 import com.achooapi.achoo_api_java.service.MethodService;
 import com.achooapi.achoo_api_java.service.UsersService;
@@ -37,6 +38,18 @@ public class MethodController {
         } catch (Exception ex) {
             log.error(ex);
             return ActionResponse.actionFail(ex + GlobalVariable.ACTION_FIND);
+        }
+    }
+
+    @PostMapping(value = "/save")
+    @ResponseBody
+    public Object save(@RequestBody(required = false) MethodDto item) {
+        try {
+            Object object = methodService.save(item);
+            return ActionResponse.actionSuccess(object, GlobalVariable.ACTION_CREATE);
+        } catch (Exception ex) {
+            log.error(ex);
+            return ActionResponse.actionFail(ex + GlobalVariable.ACTION_CREATE);
         }
     }
 }

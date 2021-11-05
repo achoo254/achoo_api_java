@@ -13,7 +13,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @Entity
-@Table(name = "Method")
+@Table(name = "Parameter")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @EntityListeners(AuditingEntityListener.class) // Generated CreatedDate & LastModifiedDate
 public class Parameter {

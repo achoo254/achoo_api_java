@@ -42,11 +42,13 @@ public class UsersApiServiceImpl implements UsersApiService {
 
     @Override
     public Object findById(String id) {
+        List<UsersApiDto> usersApiList = new ArrayList<>();
         Optional<UsersApi> usersApi = usersApiRepository.findById(id);
         if(usersApi.isPresent()){
-            return modelMapper.map(usersApi.get(), UsersApiDto.class);
+            usersApiList.add(modelMapper.map(usersApi.get(), UsersApiDto.class));
+            return usersApiList;
         }
-        return new UsersApiDto();
+        return usersApiList;
     }
 
     @Override

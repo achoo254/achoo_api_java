@@ -7,5 +7,5 @@ import com.achooapi.achoo_api_java.model.entity.Parameter;
 import java.util.List;
 
 public interface ParameterService {
-    Object saveAll(List<ParameterDto> itemList);
+    Object save(ParameterDto item);
 }

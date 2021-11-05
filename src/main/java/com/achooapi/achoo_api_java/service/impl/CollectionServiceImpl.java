@@ -37,9 +37,11 @@ public class CollectionServiceImpl implements CollectionService {
 
     @Override
     public Object save(CollectionDto item) {
+        List<CollectionDto> collectionList = new ArrayList<>();
         Collection itemSave = modelMapper.map(item, Collection.class);
         collectionRepository.save(itemSave);
-        return itemSave;
+        collectionList.add(modelMapper.map(itemSave, CollectionDto.class));
+        return collectionList;
     }
 
     @Override

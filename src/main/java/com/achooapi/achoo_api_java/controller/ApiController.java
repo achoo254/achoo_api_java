@@ -5,10 +5,6 @@ import com.achooapi.achoo_api_java.service.ApiService;
 import com.achooapi.achoo_api_java.ultis.ActionResponse;
 import com.achooapi.achoo_api_java.ultis.GlobalVariable;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 @Log4j2
@@ -41,6 +37,17 @@ public class ApiController {
         } catch (Exception ex) {
             log.error(ex);
             return ActionResponse.actionFail(ex + GlobalVariable.ACTION_FIND);
+        }
+    }
+
+    @PostMapping(value = "/delete")
+    @ResponseBody
+    public Object delete(@RequestBody(required = false) ApiDto item) {
+        try {
+            return ActionResponse.actionSuccess(apiService.delete(item.getId()), GlobalVariable.ACTION_DELETE);
+        } catch (Exception ex) {
+            log.error(ex);
+            return ActionResponse.actionFail(ex + GlobalVariable.ACTION_DELETE);
         }
     }
 }

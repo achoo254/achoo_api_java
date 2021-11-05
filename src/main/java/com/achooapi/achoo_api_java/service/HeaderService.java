@@ -7,5 +7,5 @@ import com.achooapi.achoo_api_java.model.entity.Header;
 import java.util.List;
 
 public interface HeaderService {
-    Object saveAll(List<HeaderDto> itemList);
+    Object save(HeaderDto item);
 }

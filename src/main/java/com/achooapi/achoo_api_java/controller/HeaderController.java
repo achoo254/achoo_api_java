@@ -23,9 +23,9 @@ public class HeaderController {
 
     @PostMapping(value = "")
     @ResponseBody
-    public Object saveAll(@RequestBody(required = false) List<HeaderDto> itemList) {
+    public Object saveAll(@RequestBody(required = false) HeaderDto item) {
         try {
-            return ActionResponse.actionSuccess(headerService.saveAll(itemList), GlobalVariable.ACTION_CREATE);
+            return ActionResponse.actionSuccess(headerService.save(item), GlobalVariable.ACTION_CREATE);
         } catch (Exception ex) {
             log.error(ex);
             return ActionResponse.actionFail(ex + GlobalVariable.ACTION_CREATE);

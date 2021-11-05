@@ -23,9 +23,9 @@ public class ParameterController {
 
     @PostMapping(value = "")
     @ResponseBody
-    public Object saveAll(@RequestBody(required = false) List<ParameterDto> itemList) {
+    public Object saveAll(@RequestBody(required = false) ParameterDto item) {
         try {
-            return ActionResponse.actionSuccess(parameterService.saveAll(itemList), GlobalVariable.ACTION_CREATE);
+            return ActionResponse.actionSuccess(parameterService.save(item), GlobalVariable.ACTION_CREATE);
         } catch (Exception ex) {
             log.error(ex);
             return ActionResponse.actionFail(ex + GlobalVariable.ACTION_CREATE);
